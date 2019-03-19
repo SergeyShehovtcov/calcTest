@@ -1,0 +1,198 @@
+<html>
+<head>
+    <title>калькулятор выплат по ссуде на JavaScript</title>
+    <meta charset="utf-8">
+    <style>
+        /* Это каскадная таблица стилей: с ее помощью определяется внешний вид документа */
+        .result { font-weight: bold; } /*стиль отображения элементов с class="result"*/
+        #payment { text-decoration: underline; } /* для элемента с id="payment" */
+    </style>
+</head>
+<body >
+<div style="width: 601px; margin: 0 auto; border: 1px solid black";>
+<form name="loandata">
+    <table>
+        <tr><td><b>Введите данные о ссуде:</b></td></tr>
+        <tr>
+            <td>Размер ссуды :</td>
+            <td><input type="text" name="base" ></td>
+        </tr>
+        <tr>
+            <td>Дата взятия ссуды:</td>
+            <td><input type="date" name="date" ></td>
+        </tr>
+        <tr>
+            <td>Процент в день:</td>
+            <td><input type="number" name="percent" min="0" step="0.01" ></td>
+        </tr>
+        <tr>
+            <td>Срок ссуды в днях:</td>
+            <td><input type="number" name="duration" min="0" step="1" ></td>
+        </tr>
+
+        <tr><td><b>Внесённые платежи:</b></td></tr>
+        <tr>
+            <td>Платёж №1 :</td>
+            <td><input type="date" name="paymentDate1" ></td>
+            <td><input type="number" name="paymentAmount1"></td>
+        </tr>
+        <tr>
+            <td>Платёж №2 :</td>
+            <td><input type="date" name="paymentDate2" ></td>
+            <td><input type="number" name="paymentAmount2"></td>
+        </tr>
+        <tr>
+            <td>Платёж №3 :</td>
+            <td><input type="date" name="paymentDate3" ></td>
+            <td><input type="number" name="paymentAmount3" ></td>
+        </tr>
+        <tr>
+            <td>Платёж №4 :</td>
+            <td><input type="date" name="paymentDate4" ></td>
+            <td><input type="number" name="paymentAmount4" ></td>
+        </tr>
+        <tr>
+            <td>Платёж №5 :</td>
+            <td><input type="date" name="paymentDate5" ></td>
+            <td><input type="number" name="paymentAmount5" ></td>
+        </tr>
+        <tr>
+            <td>Платёж №6 :</td>
+            <td><input type="date" name="paymentDate6" ></td>
+            <td><input type="number" name="paymentAmount6" ></td>
+        </tr>
+        <tr>
+            <td>Платёж №7 :</td>
+            <td><input type="date" name="paymentDate7" ></td>
+            <td><input type="number" name="paymentAmount7" ></td>
+        </tr>
+        <tr>
+            <td>Платёж №8 :</td>
+            <td><input type="date" name="paymentDate8" ></td>
+            <td><input type="number" name="paymentAmount8" ></td>
+        </tr>
+
+        <tr><td></td>
+            <td><input type="button" value="Рассчитать"
+                       onclick="calculate( );"></td>
+        </tr>
+
+        <tr><td><b>Сведения о платежах:</b></td></tr>
+
+        <tr>
+            <td>Cуммарная задолженность для займа:</td>
+            <td><span class="result" id="total"></span></td>
+        </tr>
+        <!--<tr>-->
+            <!--<td>5) Общая сумма платежей по процентам:</td>-->
+            <!--<td>$<span class="result" id="totalinterest"></span></td>-->
+        <!--</tr>-->
+    </table>
+</form>
+</div>
+<script src="/calcTest/js/jquery-1.10.2.js"></script>
+<script>
+    function getCurrentDate() {
+        var now = new Date();
+        $str = '';
+        $str += now.getFullYear() + '-' +
+                (now.getMonth() + 1) + '-' +
+                   now.getDate()  + ' ' +
+                   now.getHours() + ':' +
+                   now.getMinutes() + ':' +
+                   now.getSeconds();
+        return $str;
+    }
+    /*
+     * Это JavaScriptфункция, которая заставляет пример работать.
+     * Обратите внимание: в этом сценарии определяется функция calculate(),
+     * вызываемая обработчиками событий в форме. Функция извлекает значения
+     * из полей <input> формы, используя имена, определенные в коде, который
+     * приведен ранее. Результаты выводятся в именованные элементы <span>
+     */
+    function calculate( ) {
+        // Получаем пользовательские данные из формы. Предполагаем, что данные
+        // являются корректными. Преобразуем процентную ставку из процентов
+        // в десятичное значение. Преобразуем период платежа
+        // в годах в количество месячных платежей.
+//        var base = document.loandata.base.value;
+//        console.log("base="+base);
+//        var date = document.loandata.date.value;
+//        console.log("date="+date);
+//        var percent = document.loandata.percent.value;
+//        console.log("percent="+percent);
+//        var duration = document.loandata.duration.value;
+//        console.log("duration="+duration);
+
+//        console.log(body);
+//        var paymentDate1 = document.loandata.paymentDate1.value;
+//        console.log("paymentDate1="+paymentDate1);
+//        var paymentDate2 = document.loandata.paymentDate2.value;
+//        console.log("paymentDate2="+paymentDate2);
+//        var paymentDate3 = document.loandata.paymentDate3.value;
+//        console.log("paymentDate3="+paymentDate3);
+//        var paymentDate4 = document.loandata.paymentDate4.value;
+//        console.log("paymentDate4="+paymentDate4);
+//        var paymentDate5 = document.loandata.paymentDate5.value;
+//        console.log("paymentDate5="+paymentDate5);
+//        var paymentDate6 = document.loandata.paymentDate6.value;
+//        console.log("paymentDate6="+paymentDate6);
+//        var paymentDate7 = document.loandata.paymentDate7.value;
+//        console.log("paymentDate7="+paymentDate7);
+//        var paymentDate8 = document.loandata.paymentDate8.value;
+//        console.log("paymentDate8="+paymentDate8);
+//
+//        var paymentAmount1 = document.loandata.paymentAmount1.value;
+//        console.log("paymentAmount1="+paymentAmount1);
+//        var paymentAmount2 = document.loandata.paymentAmount2.value;
+//        console.log("paymentAmount2="+paymentAmount2);
+//        var paymentAmount3 = document.loandata.paymentAmount3.value;
+//        console.log("paymentAmount3="+paymentAmount3);
+//        var paymentAmount4 = document.loandata.paymentAmount4.value;
+//        console.log("paymentAmount4="+paymentAmount4);
+//        var paymentAmount5 = document.loandata.paymentAmount5.value;
+//        console.log("paymentAmount5="+paymentAmount5);
+//        var paymentAmount6 = document.loandata.paymentAmount6.value;
+//        console.log("paymentAmount6="+paymentAmount6);
+//        var paymentAmount7 = document.loandata.paymentAmount7.value;
+//        console.log("paymentAmount7="+paymentAmount7);
+//        var paymentAmount8 = document.loandata.paymentAmount8.value;
+//        console.log("paymentAmount8="+paymentAmount8);
+
+        var body = {
+            "loan": {
+                "base": document.loandata.base.value,
+                "date": document.loandata.date.value,
+                "percent": document.loandata.percent.value,
+                "duration": document.loandata.duration.value,
+            },
+            "payments": [
+                { "amount": document.loandata.paymentAmount1.value, "date": document.loandata.paymentDate1.value },
+                { "amount": document.loandata.paymentAmount2.value, "date": document.loandata.paymentDate2.value },
+                { "amount": document.loandata.paymentAmount3.value, "date": document.loandata.paymentDate3.value },
+                { "amount": document.loandata.paymentAmount4.value, "date": document.loandata.paymentDate4.value },
+                { "amount": document.loandata.paymentAmount5.value, "date": document.loandata.paymentDate5.value },
+                { "amount": document.loandata.paymentAmount6.value, "date": document.loandata.paymentDate6.value },
+                { "amount": document.loandata.paymentAmount7.value, "date": document.loandata.paymentDate7.value },
+                { "amount": document.loandata.paymentAmount8.value, "date": document.loandata.paymentDate8.value },
+            ],
+            "atDate": getCurrentDate(),
+        };
+        console.log(body);
+        $.ajax({
+            url: '/calcTest/app.php',
+            type: 'post',
+            data: {'data': body},
+            success: function (res) {
+                if (! res ) return;
+                res = Number(res);
+                document.getElementById('total').innerHTML = res.toFixed(2);
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+    }
+</script>
+</body>
+</html>
